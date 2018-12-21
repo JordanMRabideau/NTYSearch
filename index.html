@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+                <header>
+                    <div class="jumbotron text-center bg-primary">
+                        <h1>New York Times Search</h1>
+                    </div>
+                </header>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-primary border">
+                            <div class="panel-heading bg-dark">
+                                <p class="ml-2">Search Parameters</p>
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <p>Search Term:</p>
+                                    <input type="text" class="form-control" id="searchTerm">
+                                </div>
+
+                                <div class="form-group">
+                                    <p>Number of Records to Retrieve:</p>
+                                    <select class="form-control" id="recordsNumber">
+                                        <option value=1>1</option>
+                                        <option value=5>5</option>
+                                        <option value=10>10</option>
+                    
+
+                                <div class="form-group">
+                                    <p>Start Year (Optional)</p>
+                                    <input type="text" class='form-control' id='startYear'>
+                                </div>
+
+                                <div class="form-group">
+                                    <p>End Year (Optional)</p>
+                                    <input type="text" class="form-control" id='endYear'>
+                                </div>
+
+                                <div class="btn-toolbar">
+                                    <button type="button" class="btn btn-secondary">Search</button>
+                                    <button type="button" class="btn btn-secondary">Clear Results</button>
+                                </div>
+                            </div>
+
+                            </div>
+                        </div>
+
+                        <div class="panel panel-primary border">
+                            
+                        </div>
+                    </div>
+                </div>
+               
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
