@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- <link rel="stylesheet" type="text/css" href="./assets/css/style.css"> -->
+    <style>
+    .panel-body {
+        background: lightgrey;
+    }
+</style>
   </head>
 
   <body>
@@ -18,13 +23,16 @@
     </div>
   <script>
     "use strict";
+    var q = "trump";
+    var s_date = "20180101";
+    var e_date = "20181231";
+    var maxReturn = "3";
     var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
     url += '?' + $.param({
       'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
       'q': "trump",
       'begin_date': "20180101",
       'end_date': "20181231",
-      'hl': "y"
     });
     $.ajax({
       url: url,
@@ -34,20 +42,30 @@
       var response = result.response.docs;
       console.log(response);
 
-      for (var i=0; i < response.length; i++) {
-        var articleDiv = $("<div id=response-" + i + ">");
-            articleDiv.appendTo("#result-div");
-        var snippet = $("<p>");
-            snippet.text(response[i].snippet);
-            snippet.appendTo(articleDiv);
-
-            
+      var panelGroupDiv = $("<div>");
+            panelGroupDiv.addClass("panel-group");
+            panelGroupDiv.appendTo("#result-div");
+      for (var i=0; i < maxReturn; i++) {
+        // var articleDiv = $("<div id=response-" + i + ">");
+        //     articleDiv.appendTo("#result-div");
+        // var snippet = $("<p>");
+        //     snippet.text("Article #: " + (i+1) + " " + response[i].snippet);
+        //     snippet.appendTo(articleDiv);
+        var panelDiv = $("<div>");
+            panelDiv.addClass("panel panel-default");
+            panelDiv.appendTo(panelGroupDiv);
+        var panelBodyDiv = $("<div>");
+            panelBodyDiv.addClass("my-3 py-3 font-weight-bold panel-body articleLink");
+            panelBodyDiv.html(" " + "<a target=\"_blank\" href=" + response[i].web_url + ">" + response[i].snippet + "</a>");
+            panelBodyDiv.appendTo(panelDiv);
+        var articleNum = $("<button>");
+            articleNum.text(i);
+            articleNum.prependTo(panelBodyDiv);
       }
-
-
     }).fail(function(err) {
       throw err;
     });
+
   </script>
   </body>
 
