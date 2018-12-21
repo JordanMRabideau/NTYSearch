@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>All Glory to the Hypnotoad</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="./assets/css/style.css"> -->
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="result-div">
+
+      </div>
+    </div>
+  <script>
+    "use strict";
+    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+    url += '?' + $.param({
+      'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931",
+      'q': "trump",
+      'begin_date': "20180101",
+      'end_date': "20181231",
+      'hl': "y"
+    });
+    $.ajax({
+      url: url,
+      method: 'GET',
+    }).done(function(result) {
+      console.log(result);
+      var response = result.response.docs;
+      console.log(response);
+
+      for (var i=0; i < response.length; i++) {
+        var articleDiv = $("<div id=response-" + i + ">");
+            articleDiv.appendTo("#result-div");
+        var snippet = $("<p>");
+            snippet.text(response[i].snippet);
+            snippet.appendTo(articleDiv);
+
+            
+      }
+
+
+    }).fail(function(err) {
+      throw err;
+    });
+  </script>
+  </body>
+
+</html>
